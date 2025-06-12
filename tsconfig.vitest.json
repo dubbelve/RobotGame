@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.app.json", // Or your base config
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",
+    "lib": [], // Or appropriate libs for testing
+    "types": ["vitest/globals", "@testing-library/jest-dom/vitest", "jsdom"] // <--- ADD THIS LINE
+  },
+  "include": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/**/*.d.ts"] // <--- Ensure your test files and d.ts files are included
+}

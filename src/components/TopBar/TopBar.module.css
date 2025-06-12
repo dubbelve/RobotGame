@@ -1,0 +1,38 @@
+.topbar {
+    width: 20%;
+    height: auto;
+    padding: 1rem 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.commandControls {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.gridControls, .initialPositionControls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 80%;
+}
+
+.gridControls label, .initialPositionControls label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.gridControls input, .initialPositionControls input {
+    width: 60px;
+    padding: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

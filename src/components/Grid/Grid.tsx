@@ -23,6 +23,27 @@ const directionToIndex: Record<Direction, number> = {
     270: 3   // West
 } as const;
 
+const GridCell = ({ row, col, isActive, robotDirection, isMoving }: IGridCell) => (
+    <div
+        key={`${row}-${col}`}
+        className={`${styles.gridCell} ${isActive ? styles.active : ''}`}
+        data-testid={!isActive ? "grid-cell" : undefined}
+    >
+        {/* Detta är roboten */}
+        {isActive && robotDirection !== undefined && (
+            <div
+                className={`${styles.robot} ${isMoving ? styles.robotMoving : ''}`}
+                data-testid="robot-sprite"
+                style={{
+                    backgroundPosition: `-${directionToIndex[robotDirection] * 32}px 0px`,
+                }}
+            />
+        )}
+        {/* Detta är cellen */}
+        {!isActive && `(${row}, ${col})`}
+    </div>
+);
+
 const Grid = ({rows, cols, robotPos}: IGrid) => {
     const [isMoving, setIsMoving] = useState(false);
     const [prevPos, setPrevPos] = useState(robotPos);
@@ -39,31 +60,7 @@ const Grid = ({rows, cols, robotPos}: IGrid) => {
         }
     }, [robotPos]);
 
-    const GridCell = ({ row, col, isActive, robotDirection, isMoving }: IGridCell) => (
-        <div
-            key={`${row}-${col}`}
-            className={`${styles.gridCell} ${isActive ? styles.active : ''}`}
-            data-testid={!isActive ? "grid-cell" : undefined}
-        >
-            {/* Detta är roboten */}
-            {isActive && robotDirection !== undefined && (
-                <div
-                    className={`${styles.robot} ${isMoving ? styles.robotMoving : ''}`}
-                    data-testid="robot-sprite"
-                    style={{
-                        backgroundImage: "url('/linksprites.png')",
-                        backgroundPosition: `-${directionToIndex[robotDirection] * 32}px 0px`,
-                        backgroundSize: `128px 32px`,
-                        width: '32px',
-                        height: '32px',
-                        backgroundRepeat: 'no-repeat',
-                    }}
-                />
-            )}
-            {/* Detta är cellen */}
-            {!isActive && `(${row}, ${col})`}
-        </div>
-    );
+
 
     const memoizedGrid = useMemo(() => {
         const grid = [];

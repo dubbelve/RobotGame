@@ -59,6 +59,9 @@
     align-items: center;
     position: absolute;
     z-index: 1;
+    background-size: 128px 32px;
+    background-repeat: no-repeat;
+    background-image: url('/linksprites.png');
 }
 
 .robotMoving {
